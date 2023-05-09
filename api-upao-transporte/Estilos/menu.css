@@ -1,0 +1,10 @@
+html,body {
+    height:100%;
+    padding-top:70px;
+}
+
+
+section {
+  height:calc(90% - 50px);
+}
+

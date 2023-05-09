@@ -1,10 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.9.0/alertify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.9.0/alertify.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 <body>
-$END$
+<h1>REGISTRO</h1>
+<form id="registro-formulario">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="correoElectronico">correoElectronico:</label>
+    <input type="text" id="correoElectronico" name="correo" required>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" name="contrasena" required>
+
+    <label for="celular">Celular:</label>
+    <input type="text" id="celular" name="celular" pattern="[0-9]{9}" required>
+
+    <button type="submit">Culminar Registro</button>
+
+</form>
+
+<!-- Escenario 2: Mostrar notificación de cuenta registrada -->
+
+<div id="mensaje" style="display:none;">Cuenta registrada correctamente</div>
+
+<!-- Escenario 3: Continuar usando la plataforma -->
+<button id="inicio" onclick="window.location.href='main.html'">Inicio</button>
+
+
+<script>
+    const registroFormulario = document.querySelector('#registro-formulario');
+    const mensaje = document.querySelector('#mensaje');
+    
+
+    registroFormulario.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const nombre = document.querySelector('#nombre').value;
+        const correoElectronico = document.querySelector('#correo').value;
+        const contrasena = document.querySelector('#contrasena').value;
+        const celular = document.querySelector('#celular').value;
+
+        fetch('/api/v1/users/add', {
+            method: 'POST',
+            body: JSON.stringify({
+                nombre,
+                correoElectronico,
+                contrasena,
+                celular
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    mensaje.style.display = 'block';
+                    mensaje.textContent = 'Cuenta registrada correctamente';
+                    registroFormulario.style.display = 'none';
+
+                } else {
+                    throw new Error('No se pudo registrar la cuenta');
+                }
+            });
+</script>
 </body>
 </html>
