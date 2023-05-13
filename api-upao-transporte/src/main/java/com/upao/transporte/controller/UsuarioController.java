@@ -69,8 +69,11 @@ public class UsuarioController {
         return ResponseEntity.ok("Usuario actualizado correctamente: " + id);
     }
 
-
-
+    @DeleteMapping("eliminarUsuario/{id}")
+    public ResponseEntity<String> eliminarUsuario(@PathVariable Long id) {
+        plataformaService.EliminarUsuario(id);
+        return ResponseEntity.ok("Usuario eliminado correctamente");
+    }
 
 }
 
