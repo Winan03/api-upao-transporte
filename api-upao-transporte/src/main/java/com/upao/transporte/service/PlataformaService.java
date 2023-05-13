@@ -10,7 +10,7 @@ public interface PlataformaService {
     Usuario createUsuario(Usuario usuario);
     boolean loginUsuario(String nombre,String contrasena);
     Usuario modificarUsuario(Usuario usuario);
-
+    Optional<Usuario> findById(Long id);
     RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte);
     List<RutaDeTransporte> obtenerRutasDeTransporte();
 

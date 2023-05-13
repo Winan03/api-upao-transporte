@@ -46,7 +46,10 @@ public class PlataformaServiceImpl implements PlataformaService {
 
         return usuarioRepositorio.save(usuario);
     }
-
+    @Override
+    public Optional<Usuario> findById(Long id) {
+        return usuarioRepositorio.findById(id);
+    }
     public RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte) {
         if(rutaDeTransporte.getHorarioSalida().isBefore(LocalDateTime.of(rutaDeTransporte.getHorarioSalida().toLocalDate(),LocalTime.of(6,0)))
                 || rutaDeTransporte.getHorarioLlegada().isAfter(LocalDateTime.of(rutaDeTransporte.getHorarioLlegada().toLocalDate(),LocalTime.of(21,0))) ||

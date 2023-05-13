@@ -49,6 +49,27 @@ public class UsuarioController {
 
     }
 
+    @PutMapping("modificarUsuario/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody Usuario usuario) {
+
+        Optional<Usuario> usuarioExistenteOpccional = plataformaService.findById(id);
+
+        if(usuarioExistenteOpccional.isPresent()){
+            Usuario usuarioExistente = usuarioExistenteOpccional.get();
+            usuarioExistente.setNombre(usuario.getNombre());
+            usuarioExistente.setCorreoElectronico(usuario.getCorreoElectronico());
+            usuarioExistente.setContrasena(usuario.getContrasena());
+            usuarioExistente.setCelular(usuario.getCelular());
+
+            plataformaService.modificarUsuario(usuarioExistente);
+
+            return ResponseEntity.ok("Usuario "+usuarioExistente.getNombre()+" actualizado correctamente ");
+        }
+
+        return ResponseEntity.ok("Usuario actualizado correctamente: " + id);
+    }
+
+
 
 
 }
