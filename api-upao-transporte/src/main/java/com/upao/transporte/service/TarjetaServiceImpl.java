@@ -15,6 +15,11 @@ public class TarjetaServiceImpl implements TarjetaService{
 
     @Override
     public Tarjeta createTarjeta(Tarjeta tarjeta) {
+
+        if(String.valueOf(tarjeta.getNum()).length() != 16 || String.valueOf(tarjeta.getCvv()).length() != 3  ){
+            throw new IllegalArgumentException("Usuario "+tarjeta.getUsuario().getNombre()+" intento agregar una tarjeta de" +
+                    "credito pero hay un error al ingresar los datos , puede realizarlo de nuevo ");
+        }
         return tarjetaRepository.save(tarjeta);
     }
 }

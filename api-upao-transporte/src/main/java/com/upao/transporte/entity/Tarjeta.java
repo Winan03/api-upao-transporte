@@ -22,11 +22,10 @@ public class Tarjeta {
     @Column(name="fechaVencimiento",nullable = false)
     private String fechaVenc;
     @Column(name="cvv",nullable = false)
-    private int cvv;
+    private String cvv;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id",nullable = false)
     private Usuario usuario;
-
 
 }

@@ -21,8 +21,15 @@ public class TarjetaController {
     }
 
     @PostMapping
-    public ResponseEntity<Tarjeta> addTarjeta(@RequestBody Tarjeta tarjeta){
-        return new ResponseEntity<Tarjeta>(tarjetaService.createTarjeta(tarjeta), HttpStatus.CREATED);
+    public ResponseEntity<String> addTarjeta(@RequestBody Tarjeta tarjeta){
+        Tarjeta tarjetaCreada = tarjetaService.createTarjeta(tarjeta);
+        if (tarjetaCreada != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body("Se ha agregado una tarjeta exitosamente");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear la tarjeta ");
+        }
+
     }
 
 }
