@@ -53,7 +53,9 @@ public class PlataformaServiceImpl implements PlataformaService {
 
         return false;
     }
-
+    public Optional<Usuario> findByNombre(String nombre) {
+        return usuarioRepositorio.findByNombre(nombre);
+    }
     @Override
     public Usuario modificarUsuario(Usuario usuario) {
 

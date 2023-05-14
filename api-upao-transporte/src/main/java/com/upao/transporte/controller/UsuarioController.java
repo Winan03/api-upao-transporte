@@ -43,19 +43,31 @@ public class UsuarioController {
         }
     }
 
+
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody Usuario request) {
-        String username = request.getNombre();
-        String password = request.getContrasena();
+    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
+        String username = usuario.getNombre();
+        String password = usuario.getContrasena();
 
-        boolean validarLogin = plataformaService.loginUsuario(username, password);
-
-        if (validarLogin) {
-            return ResponseEntity.ok("Acceso exitoso, Bienvenido a la plataforma usuario "+username);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("El nombre de usuario o la contraseña son incorrectos");
+        if (!usuario.validarNombre()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ingreso mal su nombre, solo debe contener letras y espacios.");
         }
 
+        if (!usuario.validarContrasena()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ingreso mal su contraseña, necesita tener al menos 5 caracteres y al menos 1 número.");
+        }
+
+        Optional<Usuario> usuarioOptional = plataformaService.findByNombre(username);
+        if (!usuarioOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("El nombre de usuario no existe en la base de datos. Por favor, ingrese un nombre válido.");
+        }
+
+        Usuario usuarioEncontrado = usuarioOptional.get();
+        if (!usuarioEncontrado.getContrasena().equals(password)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("La contraseña es incorrecta. Por favor, ingrese una contraseña válida.");
+        }
+
+        return ResponseEntity.ok("Acceso exitoso, Bienvenido a la plataforma usuario " + username);
     }
 
     @PutMapping("modificarUsuario/{id}")

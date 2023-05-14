@@ -10,6 +10,7 @@ public interface PlataformaService {
     Usuario createUsuario(Usuario usuario);
     boolean loginUsuario(String nombre,String contrasena);
     Usuario modificarUsuario(Usuario usuario);
+    Optional<Usuario> findByNombre(String nombre);
     Optional<Usuario> findById(Long id);
     void eliminarUsuario(Long id);
     Usuario consultarInformacionUsuario (String nombre,String correoElectronico);
