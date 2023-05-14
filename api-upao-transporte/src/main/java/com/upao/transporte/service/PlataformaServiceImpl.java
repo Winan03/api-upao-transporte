@@ -23,6 +23,23 @@ public class PlataformaServiceImpl implements PlataformaService {
 
     @Override
     public Usuario createUsuario(Usuario usuario) {
+
+        if (!usuario.validarNombre()) {
+            throw new IllegalArgumentException("El nombre ingresado es inválido.");
+        }
+
+        if (!usuario.validarCorreo()) {
+            throw new IllegalArgumentException("El correo ingresado es inválido.");
+        }
+
+        if (!usuario.validarContrasena()) {
+            throw new IllegalArgumentException("La contraseña ingresada es inválida.");
+        }
+
+        if (!usuario.validarCelular()) {
+            throw new IllegalArgumentException("El número de celular ingresado es inválido.");
+        }
+
         return usuarioRepositorio.save(usuario);
     }
 
@@ -37,10 +54,6 @@ public class PlataformaServiceImpl implements PlataformaService {
         return false;
     }
 
-    public List<RutaDeTransporte> obtenerRutasDeTransporte() {
-        return transporteRepositorio.findAll();
-    }
-
     @Override
     public Usuario modificarUsuario(Usuario usuario) {
 
@@ -51,7 +64,7 @@ public class PlataformaServiceImpl implements PlataformaService {
         return usuarioRepositorio.findById(id);
     }
     @Override
-    public void EliminarUsuario(Long id) {
+    public void eliminarUsuario(Long id) {
         usuarioRepositorio.deleteById(id);
     }
     public RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte) {
@@ -63,6 +76,18 @@ public class PlataformaServiceImpl implements PlataformaService {
         }
         return transporteRepositorio.save(rutaDeTransporte);
 
+    }
+
+    public Usuario consultarInformacionUsuario(String nombre, String correoElectronico) {
+
+        String nombreLower = nombre.toLowerCase();
+        String correoLower = null;
+        if (correoElectronico != null) {
+            correoLower = correoElectronico.toLowerCase();
+        }
+
+        Optional<Usuario> usuarioOptional = usuarioRepositorio.findByNombreAndCorreo(nombreLower, correoLower);
+        return usuarioOptional.orElse(null);
     }
 }
 

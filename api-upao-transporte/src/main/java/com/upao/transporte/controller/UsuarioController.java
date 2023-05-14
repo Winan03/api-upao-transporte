@@ -23,15 +23,24 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<String> addUsuario(@RequestBody Usuario usuario){
 
-        Usuario usuarioCreado = plataformaService.createUsuario(usuario);
 
-        if (usuarioCreado != null) {
-            String mensaje = "Usuario registrado correctamente: " + usuarioCreado.getNombre();
-            return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar el usuario");
+        try {
+            Usuario usuarioCreado = plataformaService.createUsuario(usuario);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario "+usuarioCreado.getNombre()+" registrado correctamente");
+        } catch (IllegalArgumentException e) {
+
+            if (!usuario.validarNombre()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre debe contener solo letras y espacios.");
+            } else if (!usuario.validarCorreo()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El correo no tiene un formato válido.");
+            } else if (!usuario.validarContrasena()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La contraseña debe tener al menos 5 caracteres y al menos 1 número.");
+            } else if (!usuario.validarCelular()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El número de celular debe contener solo números y tener 9 dígitos.");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear el usuario. Verifique bien si ha ingresado correctamente los datos.");
+                }
         }
-
     }
 
     @PostMapping("login")
@@ -57,7 +66,7 @@ public class UsuarioController {
         if(usuarioExistenteOpccional.isPresent()){
             Usuario usuarioExistente = usuarioExistenteOpccional.get();
             usuarioExistente.setNombre(usuario.getNombre());
-            usuarioExistente.setCorreoElectronico(usuario.getCorreoElectronico());
+            usuarioExistente.setCorreo(usuario.getCorreo());
             usuarioExistente.setContrasena(usuario.getContrasena());
             usuarioExistente.setCelular(usuario.getCelular());
 
@@ -71,9 +80,23 @@ public class UsuarioController {
 
     @DeleteMapping("eliminarUsuario/{id}")
     public ResponseEntity<String> eliminarUsuario(@PathVariable Long id) {
-        plataformaService.EliminarUsuario(id);
+        plataformaService.eliminarUsuario(id);
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }
 
+    @GetMapping("consultarUsuario")
+    public ResponseEntity<Usuario> consultUserXnameYcorreo( @RequestBody Usuario usuario) {
+
+        String ussername = usuario.getNombre();
+        String correo = usuario.getCorreo();
+        Usuario user = plataformaService.consultarInformacionUsuario(ussername,correo);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
+
 

@@ -11,9 +11,9 @@ public interface PlataformaService {
     boolean loginUsuario(String nombre,String contrasena);
     Usuario modificarUsuario(Usuario usuario);
     Optional<Usuario> findById(Long id);
-    void EliminarUsuario(Long id);
+    void eliminarUsuario(Long id);
+    Usuario consultarInformacionUsuario (String nombre,String correoElectronico);
     RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte);
-    List<RutaDeTransporte> obtenerRutasDeTransporte();
 
 
 }
