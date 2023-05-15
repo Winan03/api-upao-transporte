@@ -15,6 +15,6 @@ public interface PlataformaService {
     void eliminarUsuario(Long id);
     Usuario consultarInformacionUsuario (String nombre,String correoElectronico);
     RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte);
-
+    void deleteById(Long id);
 
 }

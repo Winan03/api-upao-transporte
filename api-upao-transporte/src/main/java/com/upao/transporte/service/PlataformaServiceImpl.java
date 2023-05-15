@@ -1,7 +1,9 @@
 package com.upao.transporte.service;
 
 import com.upao.transporte.entity.RutaDeTransporte;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.*;
 import com.upao.transporte.entity.Usuario;
 import com.upao.transporte.repository.*;
@@ -80,6 +82,11 @@ public class PlataformaServiceImpl implements PlataformaService {
 
     }
 
+    @Override
+    public void deleteById(Long id) {
+
+    }
+
     public Usuario consultarInformacionUsuario(String nombre, String correoElectronico) {
 
         String nombreLower = nombre.toLowerCase();
@@ -90,6 +97,10 @@ public class PlataformaServiceImpl implements PlataformaService {
 
         Optional<Usuario> usuarioOptional = usuarioRepositorio.findByNombreAndCorreo(nombreLower, correoLower);
         return usuarioOptional.orElse(null);
+    }
+
+    public interface RutaRepository extends JpaRepository<RutaDeTransporte, Long> {
+        void deleteById(Long id);
     }
 }
 
