@@ -1,6 +1,7 @@
 package com.upao.transporte.controller;
 
 import com.upao.transporte.entity.RutaDeTransporte;
+import com.upao.transporte.repository.RutaRepositorio;
 import com.upao.transporte.service.PlataformaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/rutas")
@@ -33,5 +36,8 @@ public class RutaController {
     public void eliminarRuta(@PathVariable Long id){
         plataformaService.deleteById(id);
     }
+
+    //Buscar Rutas por origen y destino
+
 
 }

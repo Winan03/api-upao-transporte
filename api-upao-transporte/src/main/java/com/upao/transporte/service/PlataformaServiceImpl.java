@@ -102,5 +102,6 @@ public class PlataformaServiceImpl implements PlataformaService {
     public interface RutaRepository extends JpaRepository<RutaDeTransporte, Long> {
         void deleteById(Long id);
     }
+
 }
 
