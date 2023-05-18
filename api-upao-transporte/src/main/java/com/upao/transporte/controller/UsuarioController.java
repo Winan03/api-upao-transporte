@@ -73,21 +73,38 @@ public class UsuarioController {
     @PutMapping("modificarUsuario/{id}")
     public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody Usuario usuario) {
 
-        Optional<Usuario> usuarioExistenteOpccional = plataformaService.findById(id);
 
-        if(usuarioExistenteOpccional.isPresent()){
-            Usuario usuarioExistente = usuarioExistenteOpccional.get();
-            usuarioExistente.setNombre(usuario.getNombre());
-            usuarioExistente.setCorreo(usuario.getCorreo());
-            usuarioExistente.setContrasena(usuario.getContrasena());
-            usuarioExistente.setCelular(usuario.getCelular());
+        try {
+            Optional<Usuario> usuarioExistenteOpccional = plataformaService.findById(id);
 
-            plataformaService.modificarUsuario(usuarioExistente);
+            if(usuarioExistenteOpccional.isPresent()){
+                Usuario usuarioExistente = usuarioExistenteOpccional.get();
+                usuarioExistente.setNombre(usuario.getNombre());
+                usuarioExistente.setCorreo(usuario.getCorreo());
+                usuarioExistente.setContrasena(usuario.getContrasena());
+                usuarioExistente.setCelular(usuario.getCelular());
 
-            return ResponseEntity.ok("Usuario "+usuarioExistente.getNombre()+" actualizado correctamente ");
+
+                plataformaService.modificarUsuario(usuarioExistente);
+
+                return ResponseEntity.ok("Usuario "+usuarioExistente.getNombre()+" actualizado correctamente ");
+            }
+
+            return ResponseEntity.ok("Usuario actualizado correctamente: " + id);
+
+        } catch (IllegalArgumentException e) {
+            if (!usuario.validarNombre()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre debe contener solo letras y espacios.");
+            } else if (!usuario.validarCorreo()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El correo no tiene un formato válido.");
+            } else if (!usuario.validarContrasena()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La contraseña debe tener al menos 5 caracteres y al menos 1 número.");
+            } else if (!usuario.validarCelular()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El número de celular debe contener solo números y tener 9 dígitos.");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear el usuario. Verifique bien si ha ingresado correctamente los datos.");
+            }
         }
-
-        return ResponseEntity.ok("Usuario actualizado correctamente: " + id);
     }
 
     @DeleteMapping("eliminarUsuario/{id}")

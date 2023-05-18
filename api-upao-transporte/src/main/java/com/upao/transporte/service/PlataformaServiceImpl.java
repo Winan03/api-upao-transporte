@@ -60,7 +60,21 @@ public class PlataformaServiceImpl implements PlataformaService {
     }
     @Override
     public Usuario modificarUsuario(Usuario usuario) {
+        if (!usuario.validarNombre()) {
+            throw new IllegalArgumentException("El nombre ingresado es inválido.");
+        }
 
+        if (!usuario.validarCorreo()) {
+            throw new IllegalArgumentException("El correo ingresado es inválido.");
+        }
+
+        if (!usuario.validarContrasena()) {
+            throw new IllegalArgumentException("La contraseña ingresada es inválida.");
+        }
+
+        if (!usuario.validarCelular()) {
+            throw new IllegalArgumentException("El número de celular ingresado es inválido.");
+        }
         return usuarioRepositorio.save(usuario);
     }
     @Override
