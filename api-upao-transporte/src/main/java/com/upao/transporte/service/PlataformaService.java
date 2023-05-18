@@ -13,7 +13,7 @@ public interface PlataformaService {
     Optional<Usuario> findByNombre(String nombre);
     Optional<Usuario> findById(Long id);
     void eliminarUsuario(Long id);
-    Usuario consultarInformacionUsuario (String nombre,String correoElectronico);
+    Usuario consultarUsuarioPorId (Long id);
     RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte);
     void deleteById(Long id);
 

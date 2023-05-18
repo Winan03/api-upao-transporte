@@ -87,15 +87,10 @@ public class PlataformaServiceImpl implements PlataformaService {
 
     }
 
-    public Usuario consultarInformacionUsuario(String nombre, String correoElectronico) {
+    @Override
+    public Usuario consultarUsuarioPorId (Long id) {
 
-        String nombreLower = nombre.toLowerCase();
-        String correoLower = null;
-        if (correoElectronico != null) {
-            correoLower = correoElectronico.toLowerCase();
-        }
-
-        Optional<Usuario> usuarioOptional = usuarioRepositorio.findByNombreAndCorreo(nombreLower, correoLower);
+        Optional<Usuario> usuarioOptional = usuarioRepositorio.findById(id);
         return usuarioOptional.orElse(null);
     }
 

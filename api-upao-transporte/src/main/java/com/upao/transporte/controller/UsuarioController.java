@@ -96,12 +96,9 @@ public class UsuarioController {
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }
 
-    @GetMapping("consultarUsuario")
-    public ResponseEntity<Usuario> consultUserXnameYcorreo( @RequestBody Usuario usuario) {
-
-        String ussername = usuario.getNombre();
-        String correo = usuario.getCorreo();
-        Usuario user = plataformaService.consultarInformacionUsuario(ussername,correo);
+    @GetMapping("consulta/{id}")
+    public ResponseEntity<Usuario> consultarInformacionUsuario(@PathVariable Long id) {
+        Usuario user = plataformaService.consultarUsuarioPorId(id);
         if (user != null) {
             return ResponseEntity.ok(user);
         } else {
