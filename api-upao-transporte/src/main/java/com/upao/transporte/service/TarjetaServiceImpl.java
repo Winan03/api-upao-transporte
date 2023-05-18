@@ -1,6 +1,7 @@
 package com.upao.transporte.service;
 
 import com.upao.transporte.entity.Tarjeta;
+import com.upao.transporte.entity.Usuario;
 import com.upao.transporte.repository.TarjetaRepository;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,11 @@ public class TarjetaServiceImpl implements TarjetaService{
     @Override
     public void eliminarTarjeta(Long id) {
         tarjetaRepository.deleteById(id);
+    }
+
+    @Override
+    public Tarjeta consultarInformacionTarjeta(Long id) {
+        Optional<Tarjeta> tarjetaOptional = tarjetaRepository.findById(id);
+        return tarjetaOptional.orElse(null);
     }
 }

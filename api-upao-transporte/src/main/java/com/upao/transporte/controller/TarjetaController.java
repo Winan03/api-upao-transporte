@@ -56,4 +56,15 @@ public class TarjetaController {
         return ResponseEntity.ok("Tarjeta eliminado correctamente");
     }
 
+    @GetMapping("consultarTarjeta/{id}")
+    public ResponseEntity<Tarjeta> consultarInformacionTarjeta( @RequestBody Tarjeta tarjeta) {
+        Long id = tarjeta.getId();
+        Tarjeta tarjet = tarjetaService.consultarInformacionTarjeta(id);
+        if (tarjet != null) {
+            return ResponseEntity.ok(tarjet);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
