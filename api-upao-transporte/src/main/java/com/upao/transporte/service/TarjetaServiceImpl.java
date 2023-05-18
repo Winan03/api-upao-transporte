@@ -38,4 +38,9 @@ public class TarjetaServiceImpl implements TarjetaService{
     public Optional<Tarjeta> findById(Long id) {
         return tarjetaRepository.findById(id);
     }
+
+    @Override
+    public void eliminarTarjeta(Long id) {
+        tarjetaRepository.deleteById(id);
+    }
 }

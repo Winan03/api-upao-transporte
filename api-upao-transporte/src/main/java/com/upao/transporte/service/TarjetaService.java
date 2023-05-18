@@ -9,4 +9,5 @@ public interface TarjetaService {
     Tarjeta createTarjeta(Tarjeta tarjeta);
     Tarjeta modificarTarjeta(Tarjeta tarjeta);
     Optional<Tarjeta> findById(Long id);
+    void eliminarTarjeta(Long id);
 }

@@ -50,4 +50,10 @@ public class TarjetaController {
         return ResponseEntity.ok("Tarjeta actualizado correctamente: " + id);
     }
 
+    @DeleteMapping("eliminarTarjeta/{id}")
+    public ResponseEntity<String> eliminarTarjeta(@PathVariable Long id) {
+        tarjetaService.eliminarTarjeta(id);
+        return ResponseEntity.ok("Tarjeta eliminado correctamente");
+    }
+
 }
