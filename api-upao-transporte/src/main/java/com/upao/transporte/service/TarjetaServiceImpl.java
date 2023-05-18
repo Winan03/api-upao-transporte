@@ -4,6 +4,8 @@ import com.upao.transporte.entity.Tarjeta;
 import com.upao.transporte.repository.TarjetaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TarjetaServiceImpl implements TarjetaService{
 
@@ -21,5 +23,19 @@ public class TarjetaServiceImpl implements TarjetaService{
                     "credito pero hay un error al ingresar los datos , puede realizarlo de nuevo ");
         }
         return tarjetaRepository.save(tarjeta);
+    }
+
+    @Override
+    public Tarjeta modificarTarjeta(Tarjeta tarjeta) {
+        if(String.valueOf(tarjeta.getNum()).length() != 16 || String.valueOf(tarjeta.getCvv()).length() != 3  ){
+            throw new IllegalArgumentException("Usuario "+tarjeta.getUsuario().getNombre()+" intento agregar una tarjeta de" +
+                    "credito pero hay un error al ingresar los datos , puede realizarlo de nuevo ");
+        }
+        return tarjetaRepository.save(tarjeta);
+    }
+
+    @Override
+    public Optional<Tarjeta> findById(Long id) {
+        return tarjetaRepository.findById(id);
     }
 }
