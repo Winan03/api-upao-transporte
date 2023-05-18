@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface TarjetaRepository extends JpaRepository<Tarjeta,Long> {
     Optional<Tarjeta> findById(Long id);
+    String obtenerSaldo(Tarjeta tarjeta);
+
 }

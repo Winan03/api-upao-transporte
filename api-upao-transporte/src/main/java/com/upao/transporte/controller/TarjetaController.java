@@ -67,4 +67,16 @@ public class TarjetaController {
         }
     }
 
+    @GetMapping("consultarSaldoTarjeta/{id}")
+    public ResponseEntity<Tarjeta> consultarSaldoTarjeta( @RequestBody Tarjeta tarjeta) {
+        Long id = tarjeta.getId();
+        Tarjeta tarjet = tarjetaService.consultarInformacionTarjeta(id);
+        String sald = tarjetaService.obtenerSaldo(tarjeta);
+        if (tarjet != null) {
+            return ResponseEntity.ok(tarjet);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

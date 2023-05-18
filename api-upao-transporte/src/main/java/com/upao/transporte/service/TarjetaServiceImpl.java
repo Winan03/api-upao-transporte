@@ -50,4 +50,11 @@ public class TarjetaServiceImpl implements TarjetaService{
         Optional<Tarjeta> tarjetaOptional = tarjetaRepository.findById(id);
         return tarjetaOptional.orElse(null);
     }
+
+
+    @Override
+    public String obtenerSaldo(Tarjeta tarjeta) {
+        String sald= String.valueOf(tarjeta.getNum());;
+        return sald;
+    }
 }

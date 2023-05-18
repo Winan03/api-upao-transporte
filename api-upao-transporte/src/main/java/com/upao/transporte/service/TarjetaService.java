@@ -11,4 +11,5 @@ public interface TarjetaService {
     Optional<Tarjeta> findById(Long id);
     void eliminarTarjeta(Long id);
     Tarjeta consultarInformacionTarjeta(Long id);
+    String obtenerSaldo(Tarjeta tarjeta);
 }

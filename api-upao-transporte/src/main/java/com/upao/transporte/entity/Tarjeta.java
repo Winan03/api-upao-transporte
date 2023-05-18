@@ -23,6 +23,8 @@ public class Tarjeta {
     private String fechaVenc;
     @Column(name="cvv",nullable = false)
     private String cvv;
+    @Column(name="saldo",nullable = false)
+    private int saldo;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id",nullable = false)
