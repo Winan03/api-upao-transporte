@@ -109,10 +109,17 @@ public class UsuarioController {
 
     @DeleteMapping("eliminarUsuario/{id}")
     public ResponseEntity<String> eliminarUsuario(@PathVariable Long id) {
+        if (id == 0){
+            return ResponseEntity.badRequest().body("Se canceló la eliminación de la cuenta. No se proporcionó un ID válido.");
+        }
+
+        if (!plataformaService.existeUsuario(id)) {
+            return ResponseEntity.badRequest().body("La cuenta que desea eliminar ya no existe.");
+        }
+
         plataformaService.eliminarUsuario(id);
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }
-
     @GetMapping("consulta/{id}")
     public ResponseEntity<Usuario> consultarInformacionUsuario(@PathVariable Long id) {
         Usuario user = plataformaService.consultarUsuarioPorId(id);

@@ -3,7 +3,6 @@ package com.upao.transporte.service;
 import com.upao.transporte.entity.RutaDeTransporte;
 import com.upao.transporte.entity.Usuario;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface PlataformaService {
@@ -12,7 +11,8 @@ public interface PlataformaService {
     Usuario modificarUsuario(Usuario usuario);
     Optional<Usuario> findByNombre(String nombre);
     Optional<Usuario> findById(Long id);
-    void eliminarUsuario(Long id);
+    boolean eliminarUsuario(Long id);
+    boolean existeUsuario(Long id);
     Usuario consultarUsuarioPorId (Long id);
     RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte);
     void deleteById(Long id);

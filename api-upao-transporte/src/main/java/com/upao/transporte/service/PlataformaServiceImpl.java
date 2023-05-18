@@ -1,8 +1,8 @@
 package com.upao.transporte.service;
 
 import com.upao.transporte.entity.RutaDeTransporte;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.*;
 import com.upao.transporte.entity.Usuario;
@@ -10,7 +10,6 @@ import com.upao.transporte.repository.*;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Optional;
 import java.math.BigDecimal;
 
@@ -82,8 +81,17 @@ public class PlataformaServiceImpl implements PlataformaService {
         return usuarioRepositorio.findById(id);
     }
     @Override
-    public void eliminarUsuario(Long id) {
-        usuarioRepositorio.deleteById(id);
+    public boolean eliminarUsuario(Long id) {
+        try {
+            usuarioRepositorio.deleteById(id);
+            return true;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
+    }
+    public boolean existeUsuario(Long id) {
+        Optional<Usuario> usuarioOptional = usuarioRepositorio.findById(id);
+        return usuarioOptional.isPresent();
     }
     public RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte) {
         if(rutaDeTransporte.getHorarioSalida().isBefore(LocalDateTime.of(rutaDeTransporte.getHorarioSalida().toLocalDate(),LocalTime.of(6,0)))
