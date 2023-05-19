@@ -23,13 +23,18 @@ public class RutaController {
     }
     @PostMapping
     public ResponseEntity<String> AddRuta(@RequestBody RutaDeTransporte rutaDeTransporte) {
-        RutaDeTransporte rutaNueva = plataformaService.createRutaDeTransporte(rutaDeTransporte);
-
-        if (rutaNueva != null) {
-            String msj = "Nueva ruta " + rutaNueva.getOrigen()+" a "+ rutaNueva.getDestino()+" creada exitosamente";
+        try {
+            RutaDeTransporte rutaNueva = plataformaService.createRutaDeTransporte(rutaDeTransporte);
+            String msj = "Nueva ruta " + rutaNueva.getOrigen() + " a " + rutaNueva.getDestino() + " creada exitosamente";
             return ResponseEntity.status(HttpStatus.CREATED).body(msj);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear una nueva ruta");
+        } catch (IllegalArgumentException e) {
+            if (!rutaDeTransporte.validarOrigen()) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El origen solo debe contener números, letras y espacios.");
+            } else if (!rutaDeTransporte.validarDestino()) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El destino solo debe contener números, letras y espacios.");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear la ruta.");
+            }
         }
     }
     //Eliminar rutas

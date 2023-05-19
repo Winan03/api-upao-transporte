@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c629202a-02d5-4b72-9a5b-d2ccc778b7b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/PlataformaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/PlataformaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/PlataformaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/PlataformaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/controller/RutaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/controller/RutaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/entity/RutaDeTransporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/entity/RutaDeTransporte.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,23 +32,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/api-upao-transporte&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;92540c1a96cfa981485042e261de0010&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ApiUpaoTransporteApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-upao-transporte" />
@@ -67,7 +68,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684389047603</updated>
-      <workItem from="1684389047604" duration="6122000" />
+      <workItem from="1684389047604" duration="8030000" />
+      <workItem from="1684401858382" duration="144000" />
+      <workItem from="1684439492894" duration="5823000" />
+      <workItem from="1684451098280" duration="727000" />
     </task>
     <servers />
   </component>

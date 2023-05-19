@@ -34,12 +34,12 @@ public class RutaDeTransporte {
     private int cantPasajeros;
 
     public boolean validarOrigen(){
-        //Valida que el origen contenga solo números y letras
-        return origen.matches("^[a-zA-Z0-9]+$");
+        //Valida que el origen contenga solo números, letras y espacios
+        return origen.matches("^[a-zA-Z0-9\\s]+$");
     }
     public boolean validarDestino(){
-        //Valida que el destino contenga solo números y letras
-        return destino.matches("^[a-zA-Z0-9]+$");
+        //Valida que el destino contenga solo números, letras y espacios
+        return destino.matches("^[a-zA-Z0-9\\s]+$");
     }
 }
 
