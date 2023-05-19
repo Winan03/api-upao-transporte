@@ -4,6 +4,7 @@ import com.upao.transporte.entity.RutaDeTransporte;
 import com.upao.transporte.service.PlataformaService;
 import com.upao.transporte.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -75,14 +76,23 @@ public class RutaController{
             }
         }
     }
-    //Eliminar rutas
+
+    //US13: Consultar rutas
+    @GetMapping("consultarRutaDeTransporte/{id}")
+    public ResponseEntity<RutaDeTransporte> consultarRutaDeTransporte(@RequestBody RutaDeTransporte ruta) {
+        Long id = ruta.getId();
+        RutaDeTransporte ruta2 = rutaService.consultarRutaDeTransporte(id);
+        if (ruta2 != null) {
+            return ResponseEntity.ok(ruta2);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    //US14: Eliminar rutas
     @DeleteMapping("eliminarRutaDeTransporte/{id}")
-    public ResponseEntity<String> eliminarRuta(@PathVariable Long id) {
+    public ResponseEntity<String> eliminarRuta(Long id) {
         plataformaService.eliminarRutaDeTransporte2(id);
         return ResponseEntity.ok("Ruta eliminada correctamente");
     }
-
-    //Buscar Rutas por origen y destino
-
-
 }
+//Buscar Rutas por origen y destino

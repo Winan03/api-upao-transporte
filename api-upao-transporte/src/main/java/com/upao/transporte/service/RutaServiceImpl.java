@@ -1,6 +1,7 @@
 package com.upao.transporte.service;
 
 import com.upao.transporte.entity.RutaDeTransporte;
+import com.upao.transporte.entity.Tarjeta;
 import com.upao.transporte.repository.RutaRepositorio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -44,12 +45,18 @@ public class RutaServiceImpl implements RutaService {
 
     @Override
     public RutaDeTransporte consultarRutaDeTransporte(Long id) {
-        return null;
+        Optional<RutaDeTransporte> rutaOpcional = rutaRepositorio.findById(String.valueOf(id));
+        return rutaOpcional.orElse(null);
     }
 
     @Override
     public void eliminarRutaDeTransporte(Long id) {
         rutaRepositorio.deleteById(String.valueOf(id));
+    }
+
+    @Override
+    public Optional<RutaDeTransporte> findById(Long id) {
+        return Optional.empty();
     }
 
 }
