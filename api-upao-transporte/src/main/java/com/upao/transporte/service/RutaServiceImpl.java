@@ -22,7 +22,14 @@ public class RutaServiceImpl implements RutaService {
 
     @Override
     public RutaDeTransporte modificarRutaDeTransporte(RutaDeTransporte ruta) {
-        return null;
+        if (!ruta.validarOrigen()) {
+            throw new IllegalArgumentException("El origen ingresado es inválido");
+        }
+
+        if (!ruta.validarDestino()) {
+            throw new IllegalArgumentException("El destino ingresado es inválido.");
+        }
+        return rutaRepositorio.save(ruta);
     }
 
     @Override

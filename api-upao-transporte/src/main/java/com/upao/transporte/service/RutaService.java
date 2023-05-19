@@ -12,5 +12,5 @@ public interface RutaService {
     Optional<RutaDeTransporte> findByDestino(String destino);
     RutaDeTransporte consultarRutaDeTransporte(Long id);
     void eliminarRutaDeTransporte(Long id);
-
+    Optional<RutaDeTransporte> findById(Long id);
 }
