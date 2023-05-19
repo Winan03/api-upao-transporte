@@ -3,7 +3,6 @@ package com.upao.transporte.service;
 import com.upao.transporte.entity.RutaDeTransporte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.*;
 import com.upao.transporte.entity.Usuario;
 import com.upao.transporte.repository.*;
@@ -21,6 +20,8 @@ public class PlataformaServiceImpl implements PlataformaService {
 
     @Autowired
     private RutaRepositorio transporteRepositorio;
+    @Autowired
+    private RutaRepositorio rutaRepositorio;
 
     @Override
     public Usuario createUsuario(Usuario usuario) {
@@ -109,6 +110,7 @@ public class PlataformaServiceImpl implements PlataformaService {
 
     }
 
+
     @Override
     public Usuario consultarUsuarioPorId (Long id) {
 
@@ -116,9 +118,9 @@ public class PlataformaServiceImpl implements PlataformaService {
         return usuarioOptional.orElse(null);
     }
 
-    public interface RutaRepository extends JpaRepository<RutaDeTransporte, Long> {
-        void deleteById(Long id);
+    @Override
+    public void eliminarRutaDeTransporte2(Long id) {
+        rutaRepositorio.deleteById(String.valueOf(id));
     }
-
 }
 

@@ -16,5 +16,5 @@ public interface PlataformaService {
     Usuario consultarUsuarioPorId (Long id);
     RutaDeTransporte createRutaDeTransporte(RutaDeTransporte rutaDeTransporte);
     void deleteById(Long id);
-
+    void eliminarRutaDeTransporte2(Long id);
 }

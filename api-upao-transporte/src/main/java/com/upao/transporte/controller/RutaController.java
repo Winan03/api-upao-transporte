@@ -3,6 +3,7 @@ package com.upao.transporte.controller;
 import com.upao.transporte.entity.RutaDeTransporte;
 import com.upao.transporte.repository.RutaRepositorio;
 import com.upao.transporte.service.PlataformaService;
+import com.upao.transporte.service.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 public class RutaController {
     @Autowired
     private final PlataformaService plataformaService;
+
 
     public RutaController(PlataformaService plataformaService){this.plataformaService=plataformaService;
     }
@@ -38,8 +40,10 @@ public class RutaController {
         }
     }
     //Eliminar rutas
-    public void eliminarRuta(@PathVariable Long id){
-        plataformaService.deleteById(id);
+    @DeleteMapping("eliminarRuta/{id}")
+    public ResponseEntity<String> eliminarRuta(@PathVariable Long id) {
+        plataformaService.eliminarRutaDeTransporte2(id);
+        return ResponseEntity.ok("Ruta eliminada correctamente");
     }
 
     //Buscar Rutas por origen y destino

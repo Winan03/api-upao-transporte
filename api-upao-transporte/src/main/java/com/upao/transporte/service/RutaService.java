@@ -9,6 +9,7 @@ public interface RutaService {
     RutaDeTransporte createRutaDeTransporte (RutaDeTransporte ruta);
     RutaDeTransporte modificarRutaDeTransporte(RutaDeTransporte ruta);
     Optional<RutaDeTransporte> findByOrigen(String origen);
+    Optional<RutaDeTransporte> findByDestino(String destino);
     RutaDeTransporte consultarRutaDeTransporte(Long id);
     void eliminarRutaDeTransporte(Long id);
 
