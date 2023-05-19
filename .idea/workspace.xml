@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c629202a-02d5-4b72-9a5b-d2ccc778b7b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/RutaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/repository/RutaRepositorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/repository/RutaRepositorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/RutaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-upao-transporte/src/main/java/com/upao/transporte/service/RutaServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +79,7 @@
       <workItem from="1684401858382" duration="144000" />
       <workItem from="1684439492894" duration="5823000" />
       <workItem from="1684451098280" duration="727000" />
-      <workItem from="1684456223457" duration="311000" />
+      <workItem from="1684456223457" duration="1207000" />
     </task>
     <servers />
   </component>

@@ -2,19 +2,40 @@ package com.upao.transporte.service;
 
 import com.upao.transporte.entity.RutaDeTransporte;
 import com.upao.transporte.repository.RutaRepositorio;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
-public class RutaServiceImpl {
+@Service
+public class RutaServiceImpl implements RutaService {
+    private final RutaRepositorio rutaRepositorio;
 
-    private final RutaRepositorio rutaRepository;
-
-    public RutaServiceImpl(RutaRepositorio rutaRepository) {
-        this.rutaRepository = rutaRepository;
+    public RutaServiceImpl(RutaRepositorio rutaRepositorio) {
+        this.rutaRepositorio = rutaRepositorio;
     }
 
-    //Buscar rutas por origen y destino
-    public List<RutaDeTransporte> buscarRutas(String origen, String destino) {
-        return rutaRepository.findByOrigenAndDestino(origen, destino);
+    @Override
+    public RutaDeTransporte createRutaDeTransporte(RutaDeTransporte ruta) {
+        return null;
+    }
+
+    @Override
+    public RutaDeTransporte modificarRutaDeTransporte(RutaDeTransporte ruta) {
+        return null;
+    }
+
+    @Override
+    public Optional<RutaDeTransporte> findByOrigen(String origen) {
+        return Optional.empty();
+    }
+
+    @Override
+    public RutaDeTransporte consultarRutaDeTransporte(Long id) {
+        return null;
+    }
+
+    @Override
+    public void eliminarRutaDeTransporte(Long id) {
+
     }
 }
