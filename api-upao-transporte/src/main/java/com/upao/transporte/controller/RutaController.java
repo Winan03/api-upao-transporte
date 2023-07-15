@@ -87,6 +87,19 @@ public class RutaController{
         } else {
             return ResponseEntity.notFound().build();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
     //US14: Eliminar rutas
     @DeleteMapping("eliminarRutaDeTransporte/{id}")
