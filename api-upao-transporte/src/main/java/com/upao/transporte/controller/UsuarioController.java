@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/api/v1/users")
+@CrossOrigin("*")
 public class UsuarioController {
     @Autowired
     private final PlataformaService plataformaService;
@@ -21,14 +25,13 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addUsuario(@RequestBody Usuario usuario){
-
-
+    public ResponseEntity<Object> addUsuario(@RequestBody Usuario usuario) {
         try {
             Usuario usuarioCreado = plataformaService.createUsuario(usuario);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario "+usuarioCreado.getNombre()+" registrado correctamente");
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Usuario " + usuarioCreado.getNombre() + " registrado correctamente");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (IllegalArgumentException e) {
-
             if (!usuario.validarNombre()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El nombre debe contener solo letras y espacios.");
             } else if (!usuario.validarCorreo()) {
@@ -39,7 +42,7 @@ public class UsuarioController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El número de celular debe contener solo números y tener 9 dígitos.");
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear el usuario. Verifique bien si ha ingresado correctamente los datos.");
-                }
+            }
         }
     }
 
@@ -131,5 +134,3 @@ public class UsuarioController {
     }
 
 }
-
-

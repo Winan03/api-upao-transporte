@@ -47,4 +47,3 @@ public class Usuario {
         return celular.matches("\\d{9}");
     }
 }
-

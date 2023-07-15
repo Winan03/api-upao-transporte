@@ -9,32 +9,33 @@
                         <h1 class="text-center">Registrate aquí</h1>
 
                         <div class="container text-center">
-                            <form class="row" action="">
+                            <form (ngSubmit) = "formSubmit()">
                                 <div class="col-md-8">
                                 <mat-form-field class="full-width" appearance="outline">
                                     <mat-label>Nombre de usuario</mat-label>
-                                    <input matInput placeholder="Digite su nombre de usuario">
+                                    <input required [(ngModel)] = "user.nombre" name = "nombre" matInput placeholder="Digite su nombre de usuario">
+                                    <mat-hint>El nombre de usuario debe ser unico</mat-hint>
                                 </mat-form-field>
                                 </div>
 
                                 <div class="col-md-8">
                                 <mat-form-field class="full-width" appearance="outline">
                                     <mat-label>Correo personal</mat-label>
-                                    <input matInput placeholder="Digite su correo personal">
+                                    <input required [(ngModel)] = "user.correo" name = "correo" matInput placeholder="Digite su correo personal">
                                 </mat-form-field>
                                 </div>
 
                                 <div class="col-md-8">
                                 <mat-form-field class="full-width" appearance="outline">
                                     <mat-label>Contraseña</mat-label>
-                                    <input type="password" matInput placeholder="Digite su contraseña">
+                                    <input required [(ngModel)] = "user.contrasena" name = "contrasena" type="password" matInput placeholder="Digite su contraseña">
                                 </mat-form-field>
                                 </div>
 
                                 <div class="col-md-8">
                                 <mat-form-field class="full-width" appearance="outline">
                                     <mat-label>Celular personal</mat-label>
-                                    <input matInput placeholder="Digite su número de celular">
+                                    <input required [(ngModel)] = "user.celular" name = "celular" matInput placeholder="Digite su número de celular">
                                 </mat-form-field>
                                 </div>
 
