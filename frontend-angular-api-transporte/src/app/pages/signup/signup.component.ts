@@ -1,5 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class SignupComponent implements OnInit {
     celular : ''
   }
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private snack:MatSnackBar){
 
   }
   
@@ -27,43 +29,79 @@ export class SignupComponent implements OnInit {
   
     console.log(this.user);
     if (this.user.nombre.trim() === '') {
-      alert('El nombre es requerido');
+      this.snack.open('Su nombre es requerido!!','Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
       return;
     }
     
     if (!this.user.nombre.match(/^[a-zA-Z\s]+$/)) {
-      alert('El nombre solo debe contener letras y espacios');
+
+      this.snack.open('El nombre solo debe contener letras y espacios','Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+      
       return;
     }
     
     if (!this.user.correo.match(/^[a-zA-Z]+@[a-zA-Z]+\.com$/)) {
-      alert('El correo no tiene un formato válido');
+      this.snack.open('El correo no tiene un formato válido','Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+    
       return;
     }
     
     if (this.user.contrasena.length < 5 || !/\d/.test(this.user.contrasena)) {
-      alert('La contraseña debe tener al menos 5 caracteres y al menos 1 número');
+      this.snack.open('La contraseña debe tener al menos 5 caracteres y al menos 1 número','Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+      
       return;
     }
     
     if (!this.user.celular.match(/^\d{9}$/)) {
-      alert('El número de celular debe contener solo números y tener 9 dígitos');
+      this.snack.open('El número de celular debe contener solo números y tener 9 dígitos','Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+      
       return;
     }
     this.userService.registrarUsuario(this.user).subscribe(
       (data) => {
         console.log(data);
-        alert('Usuario guardado con éxito');
+        Swal.fire('Usuario guardado','Usuario registrado con exito en el sistema','success');
       },
       (error) => {
         console.log(error);
         if (error instanceof ErrorEvent) {
-          // Error de red o de cliente
-          alert('Ha ocurrido un error en el sistema');
+          
+          this.snack.open('Ha ocurrido un error en el sistema','Aceptar',{
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right'
+          });
+
         } else {
-          // Error de análisis de respuesta del servidor
+          
           console.log(error.error.text);
-          alert('Ha ocurrido un error al procesar la respuesta del servidor');
+
+          this.snack.open('Ha ocurrido un error al procesar la respuesta del servidor','Aceptar',{
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right'
+          });
+         
         }
       }
     );
